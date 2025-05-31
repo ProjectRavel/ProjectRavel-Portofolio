@@ -1,7 +1,6 @@
-// components/NetworkLayer.tsx
 "use client";
 import { useEffect } from "react";
-import { motion, useSpring, useAnimation } from "framer-motion";
+import { motion, useSpring, useMotionValue, animate, useAnimation } from "framer-motion";
 
 interface NetworkLayerProps {
   x: number;
@@ -13,7 +12,43 @@ interface NetworkLayerProps {
 const NetworkLayer = ({ x, y, factor, opacity = 0.2 }: NetworkLayerProps) => {
   const controls = useAnimation();
 
+  // Spring yang mengikuti posisi mouse (scaled dengan factor)
+  const springX = useSpring(x * factor, { stiffness: 100, damping: 20 });
+  const springY = useSpring(y * factor, { stiffness: 100, damping: 20 });
+
+  // MotionValue untuk efek float (animasi manual)
+  const floatX = useMotionValue(0);
+  const floatY = useMotionValue(0);
+
+  // Animasi float looping naik turun dan kiri kanan
   useEffect(() => {
+    let floatXAnim: ReturnType<typeof animate>;
+    let floatYAnim: ReturnType<typeof animate>;
+
+    // Fungsi animasi loop untuk floatX
+    const animateFloatX = () => {
+      floatXAnim = animate(floatX, 10, {
+        duration: 2,
+        ease: "easeInOut",
+        repeat: Infinity,
+        repeatType: "reverse",
+      });
+    };
+
+    // Fungsi animasi loop untuk floatY
+    const animateFloatY = () => {
+      floatYAnim = animate(floatY, 8, {
+        duration: 3,
+        ease: "easeInOut",
+        repeat: Infinity,
+        repeatType: "reverse",
+      });
+    };
+
+    animateFloatX();
+    animateFloatY();
+
+    // Animasi opacity loop dari useAnimation controls
     controls.start({
       opacity: [0.1, 0.4, 0.1],
       transition: {
@@ -23,10 +58,53 @@ const NetworkLayer = ({ x, y, factor, opacity = 0.2 }: NetworkLayerProps) => {
         ease: "easeInOut",
       },
     });
-  }, [controls]);
 
-  const springX = useSpring(x * factor, { stiffness: 100, damping: 20 });
-  const springY = useSpring(y * factor, { stiffness: 100, damping: 20 });
+    return () => {
+      floatXAnim?.stop();
+      floatYAnim?.stop();
+    };
+  }, [controls, floatX, floatY]);
+
+  // Gabungkan posisi mouse + efek float
+  // Karena style translateX/Y hanya bisa 1 nilai, kita gunakan combine value
+  // springX + floatX dan springY + floatY harus digabung pakai useMotionValue atau computed
+
+  // Untuk gabungan kita bisa gunakan `useSpring` dengan fungsi manual,
+  // tapi di sini pakai `motionValue` get dan set manual.
+
+  // Cara mudah: gunakan `motion` style dengan array expression:
+  // Tapi React style tidak bisa array untuk translate, jadi kita gunakan inline function style:
+  
+  const combinedX = useSpring(0, { stiffness: 100, damping: 20 });
+  const combinedY = useSpring(0, { stiffness: 100, damping: 20 });
+
+  useEffect(() => {
+    // update combinedX setiap springX dan floatX berubah
+    const updateX = () => {
+      combinedX.set(springX.get() + floatX.get());
+    };
+    const updateY = () => {
+      combinedY.set(springY.get() + floatY.get());
+    };
+
+    // subscribe perubahan springX dan floatX
+    const unsubSpringX = springX.on("change", updateX);
+    const unsubFloatX = floatX.on("change", updateX);
+
+    const unsubSpringY = springY.on("change", updateY);
+    const unsubFloatY = floatY.on("change", updateY);
+
+    // initial update
+    updateX();
+    updateY();
+
+    return () => {
+      unsubSpringX();
+      unsubFloatX();
+      unsubSpringY();
+      unsubFloatY();
+    };
+  }, [springX, springY, floatX, floatY, combinedX, combinedY]);
 
   return (
     <motion.svg
@@ -36,7 +114,7 @@ const NetworkLayer = ({ x, y, factor, opacity = 0.2 }: NetworkLayerProps) => {
       stroke="rgba(255,255,255,0.2)"
       strokeWidth="1"
       className="absolute inset-0 w-full h-full pointer-events-none"
-      style={{ translateX: springX, translateY: springY }}
+      style={{ translateX: combinedX, translateY: combinedY }}
       animate={controls}
       initial={{ opacity }}
     >
