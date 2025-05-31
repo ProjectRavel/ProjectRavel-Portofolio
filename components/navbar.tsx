@@ -56,7 +56,7 @@ export default function Navbar() {
           className="font-bold text-[20px] text-[var(--foreground)]"
           style={{ fontFamily: "var(--font-sans)" }}
         >
-          Ravels
+          /ProjectRavel
         </span>
 
         {/* Desktop Menu */}
