@@ -19,16 +19,15 @@ export default function Navbar() {
       const currentScrollY = window.scrollY;
 
       if (currentScrollY > lastScrollY) {
-        setShowNavbar(false); // Scroll ke bawah, sembunyikan navbar
+        setShowNavbar(false);
       } else {
-        setShowNavbar(true); // Scroll ke atas, tampilkan navbar
+        setShowNavbar(true);
       }
 
       setLastScrollY(currentScrollY);
     };
 
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
@@ -36,9 +35,23 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${
         showNavbar ? "translate-y-0" : "-translate-y-full"
-      } bg-[var(--background)] backdrop-blur shadow text-[var(--muted-foreground)]`}
+      }`}
     >
-      <div className="max-w-5xl mx-auto flex justify-between items-center p-4">
+      {/* Background with pattern and parallax */}
+      <div
+        className="absolute inset-0 bg-[var(--background)]/90 backdrop-blur-md shadow-md"
+        style={{
+          backgroundImage: `
+            url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='1' fill='%23ffffff10'/%3E%3C/svg%3E"),
+            linear-gradient(to right, transparent, transparent)
+          `,
+          backgroundRepeat: "repeat",
+          backgroundAttachment: "fixed",
+          zIndex: -1,
+        }}
+      ></div>
+
+      <div className="max-w-5xl mx-auto flex justify-between items-center p-4 relative z-10">
         <span
           className="font-bold text-[20px] text-[var(--foreground)]"
           style={{ fontFamily: "var(--font-sans)" }}
@@ -55,10 +68,10 @@ export default function Navbar() {
             <Link
               key={href}
               href={href}
-              className={`px-3 py-1 text-[12px] rounded-2xl flex items-center transition duration-200 ${
+              className={`px-3 py-1 text-[14px] rounded-2xl flex items-center transition duration-200 ${
                 href === "#hero"
                   ? "bg-[var(--secondary)] text-white hover:opacity-90"
-                  : "text-[var(--foreground)] hover:opacity-80 hover:underline"
+                  : "text-[var(--foreground)]/70 hover:opacity-80"
               }`}
             >
               {label}
@@ -66,7 +79,7 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Mobile Hamburger */}
+        {/* Mobile toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="md:hidden focus:outline-none"
@@ -92,7 +105,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-[var(--background)] border-t border-b-slate-500 backdrop-blur shadow-md">
+        <div className="md:hidden bg-[var(--background)]/90 border-t border-b-slate-500 backdrop-blur">
           <div
             className="flex flex-col space-y-3 px-4 py-3 font-medium"
             style={{ fontFamily: "var(--font-sans)" }}
