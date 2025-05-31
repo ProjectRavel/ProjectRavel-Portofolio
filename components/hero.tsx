@@ -16,9 +16,9 @@ const LazyNetworkLayer = memo(NetworkLayer, (prevProps, nextProps) => {
 });
 
 const images = [
-  "/images/slider1.jpg",
-  "/images/slider2.jpg",
-  "/images/slider3.jpg",
+  "/projects/pengangguran.jpeg",
+  "/projects/atta.jpeg",
+  "/projects/fivem.jpeg",
 ];
 
 export default function Hero() {
@@ -28,7 +28,7 @@ export default function Hero() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1500);
+    const timer = setTimeout(() => setLoading(false),1500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -75,15 +75,15 @@ export default function Hero() {
 
       <div className="relative z-10 w-full max-w-6xl mx-auto font-mono text-white">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="space-y-5 text-center md:text-left"
+                >
           {/* Text Area */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="space-y-5 text-center md:text-left"
-          >
             {loading ? (
-              <div className="relative z-10 w-full max-w-6xl mx-auto font-mono text-white">
+                <div className="relative z-10 w-full max-w-6xl mx-auto font-mono text-white">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                   <div className="flex flex-col items-center md:items-start space-y-5">
                     <Skeleton className="h-12 w-[200px] rounded-md" />
@@ -97,7 +97,7 @@ export default function Hero() {
                 </div>
               </div>
             ) : (
-              <>
+                <>
                 <h1 className="text-4xl sm:text-5xl font-bold text-primary-foreground">
                   Just Vels
                 </h1>
