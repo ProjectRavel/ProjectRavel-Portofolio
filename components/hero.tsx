@@ -1,8 +1,7 @@
 "use client";
-import { useState, useRef, useEffect, memo, Suspense } from "react";
+import { useState, useRef, memo, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Skeleton } from "@/components/ui/skeleton";
 import NetworkLayer from "./networklayer";
 
 import Image from "next/image";
@@ -26,11 +25,9 @@ export default function Hero() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [loading, setLoading] = useState(true);
   const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false),1500);
-    return () => clearTimeout(timer);
-  }, []);
+  const handleImageLoad = () => {
+    setLoading(false);
+  };
 
   const nextImage = () => setIndex((prev) => (prev + 1) % images.length);
   const prevImage = () =>
@@ -56,20 +53,8 @@ export default function Hero() {
         <LazyNetworkLayer
           x={mousePos.x}
           y={mousePos.y}
-          factor={0.02}
-          opacity={0.1}
-        />
-        <LazyNetworkLayer
-          x={mousePos.x}
-          y={mousePos.y}
-          factor={0.05}
-          opacity={0.2}
-        />
-        <LazyNetworkLayer
-          x={mousePos.x}
-          y={mousePos.y}
           factor={0.1}
-          opacity={0.3}
+          opacity={0.5}
         />
       </Suspense>
 
@@ -82,21 +67,7 @@ export default function Hero() {
                   className="space-y-5 text-center md:text-left"
                 >
           {/* Text Area */}
-            {loading ? (
-                <div className="relative z-10 w-full max-w-6xl mx-auto font-mono text-white">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                  <div className="flex flex-col items-center md:items-start space-y-5">
-                    <Skeleton className="h-12 w-[200px] rounded-md" />
-                    <Skeleton className="h-5 w-[280px] rounded-md" />
-                    <div className="flex flex-col sm:flex-row gap-4">
-                      <Skeleton className="h-10 w-[140px] rounded-xl" />
-                      <Skeleton className="h-10 w-[140px] rounded-xl" />
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            ) : (
+  
                 <>
                 <h1 className="text-4xl sm:text-5xl font-bold text-primary-foreground">
                   Just Vels
@@ -139,14 +110,10 @@ export default function Hero() {
   </button>
                 </div>
               </>
-            )}
           </motion.div>
 
           {/* Image Slider */}
           <div className="relative w-full h-64 overflow-hidden rounded-xl">
-            {loading ? (
-              <Skeleton className="w-full h-full rounded-xl" />
-            ) : (
               <AnimatePresence mode="wait">
                 <motion.div
                   key={images[index]}
@@ -161,11 +128,12 @@ export default function Hero() {
                     alt={`Slide ${index + 1}`}
                     fill
                     className="object-cover rounded-xl"
+                    onLoad={handleImageLoad}
                     priority
                   />
                 </motion.div>
               </AnimatePresence>
-            )}
+
 
             {!loading && (
               <>
