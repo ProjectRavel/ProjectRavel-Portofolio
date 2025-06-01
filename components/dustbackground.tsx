@@ -35,7 +35,7 @@ export default function ParticleBackground() {
             type: "circle",
           },
           opacity: {
-            value: 0.4,
+            value: 0.7,
             random: true,
             anim: {
               enable: false,
