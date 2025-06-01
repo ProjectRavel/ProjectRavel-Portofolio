@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   motion,
   useSpring,
@@ -24,7 +24,13 @@ const NetworkLayer = ({ x, y, factor, opacity = 0.2 }: NetworkLayerProps) => {
   const floatX = useMotionValue(0);
   const floatY = useMotionValue(0);
 
+  const combinedX = useSpring(0, { stiffness: 100, damping: 20 });
+  const combinedY = useSpring(0, { stiffness: 100, damping: 20 });
+
+  const [particles, setParticles] = useState<React.JSX.Element[]>([]);
+
   useEffect(() => {
+    // Animasi gerakan mengambang
     const floatXAnim = animate(floatX, 10, {
       duration: 2,
       ease: "easeInOut",
@@ -49,16 +55,7 @@ const NetworkLayer = ({ x, y, factor, opacity = 0.2 }: NetworkLayerProps) => {
       },
     });
 
-    return () => {
-      floatXAnim.stop();
-      floatYAnim.stop();
-    };
-  }, [controls, floatX, floatY]);
-
-  const combinedX = useSpring(0, { stiffness: 100, damping: 20 });
-  const combinedY = useSpring(0, { stiffness: 100, damping: 20 });
-
-  useEffect(() => {
+    // Update posisi gabungan
     const updateX = () => {
       combinedX.set(springX.get() + floatX.get());
     };
@@ -75,12 +72,36 @@ const NetworkLayer = ({ x, y, factor, opacity = 0.2 }: NetworkLayerProps) => {
     updateY();
 
     return () => {
+      floatXAnim.stop();
+      floatYAnim.stop();
       unsubSpringX();
       unsubFloatX();
       unsubSpringY();
       unsubFloatY();
     };
-  }, [springX, springY, floatX, floatY, combinedX, combinedY]);
+  }, [controls, floatX, floatY, springX, springY, combinedX, combinedY]);
+
+  // Partikel latar belakang hanya di-render di client
+  useEffect(() => {
+    const generatedParticles = Array.from({ length: 30 }).map((_, i) => (
+      <motion.circle
+        key={`particle-${i}`}
+        cx={Math.random() * 1000}
+        cy={Math.random() * 700}
+        r={Math.random() * 2 + 1}
+        fill="white"
+        style={{ opacity: Math.random() * 0.3 + 0.1 }}
+        animate={{ cy: ["+=10", "-=10", "+=10"] }}
+        transition={{
+          repeat: Infinity,
+          duration: 4 + Math.random() * 2,
+          ease: "easeInOut",
+        }}
+      />
+    ));
+
+    setParticles(generatedParticles);
+  }, []);
 
   const points = [
     { cx: 100, cy: 100 },
@@ -109,7 +130,7 @@ const NetworkLayer = ({ x, y, factor, opacity = 0.2 }: NetworkLayerProps) => {
       {/* Gradien Glow */}
       <defs>
         <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#ffffff  " stopOpacity="1" />
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
           <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
         </radialGradient>
       </defs>
@@ -154,22 +175,7 @@ const NetworkLayer = ({ x, y, factor, opacity = 0.2 }: NetworkLayerProps) => {
       ))}
 
       {/* Partikel latar belakang */}
-      {Array.from({ length: 30 }).map((_, i) => (
-        <motion.circle
-          key={`particle-${i}`}
-          cx={Math.random() * 1000}
-          cy={Math.random() * 700}
-          r={Math.random() * 2 + 1}
-          fill="white"
-          style={{ opacity: Math.random() * 0.3 + 0.1 }}
-          animate={{ cy: ["+=10", "-=10", "+=10"] }}
-          transition={{
-            repeat: Infinity,
-            duration: 4 + Math.random() * 2,
-            ease: "easeInOut",
-          }}
-        />
-      ))}
+      {particles}
     </motion.svg>
   );
 };
