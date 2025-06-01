@@ -3,7 +3,8 @@
 import { memo } from "react";
 import { Briefcase, GraduationCap } from "lucide-react";
 import ParticleBackground from "./dustbackground";
-import Link from "next/link"; // Import Link dari next/link
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 const vscodeColors = {
   keyword: "text-[#569CD6]",
@@ -16,6 +17,8 @@ const vscodeColors = {
 
 type codeData = Record<string, string | undefined>;
 
+// Typing animation component for each line of code
+
 const CodeBlock = memo(function CodeBlock({
   title,
   data,
@@ -23,47 +26,79 @@ const CodeBlock = memo(function CodeBlock({
 }: {
   title: string;
   data: codeData[];
-  icon?: JSX.Element;
+  icon?: React.ReactNode;
 }) {
+  // Variants for fade-in each object block with slight delay
+  const containerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i = 1) => ({
+      opacity: 1,
+      y: 0,
+      transition: { staggerChildren: 0.1, delayChildren: i * 0.3 },
+    }),
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.4 } },
+  };
+
   return (
-    <div className="bg-[#1e1e1e] rounded-xl p-6 sm:p-8 shadow-lg border border-gray-700 transition-transform hover:scale-[1.01]">
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+      variants={containerVariants}
+      className="bg-[#1e1e1e] rounded-xl p-6 sm:p-8 shadow-lg border border-gray-700 transition-transform hover:scale-[1.02] cursor-default select-text"
+    >
       <div className="flex items-center gap-3 mb-4">
         {icon}
-        <h3 className="text-2xl font-semibold text-white">{title}</h3>
+        <motion.h3
+          className="text-2xl font-semibold text-white"
+          initial={{ opacity: 0, x: -10 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          {title}
+        </motion.h3>
       </div>
       <pre className="text-sm sm:text-base font-mono text-white overflow-x-auto whitespace-pre-wrap break-words max-w-full">
         <code>
           <span className={vscodeColors.keyword}>const</span>{" "}
-          <span className={vscodeColors.variable}>{title.toLowerCase()}</span> =
-          [<br />
+          <span className={vscodeColors.variable}>{title.toLowerCase()}</span>{" "}
+          =[
+          <br />
           {data.map((item, i) => {
             const entries = Object.entries(item).filter(
               ([key]) => key !== undefined
             );
             return (
-              <span key={i}>
-                &nbsp;&nbsp;&#123;
+              <motion.span
+                key={i}
+                custom={i}
+                variants={itemVariants}
+                className="block ml-4"
+              >
+                &#123;
                 <br />
                 {entries.map(([key, val], idx) => (
                   <span key={idx}>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <span className={vscodeColors.property}>{key}</span>:{" "}
-                    <span className={vscodeColors.string}>
-                      &apos;{val}&apos;
-                    </span>
+                    <span className={vscodeColors.string}>{val}</span>
                     {idx !== entries.length - 1 ? "," : ""}
                     <br />
                   </span>
                 ))}
-                &nbsp;&nbsp;&#125;{i !== data.length - 1 ? "," : ""}
+                &#125;{i !== data.length - 1 ? "," : ""}
                 <br />
-              </span>
+              </motion.span>
             );
           })}
           ];
         </code>
       </pre>
-    </div>
+    </motion.div>
   );
 });
 
@@ -104,18 +139,31 @@ export default function About() {
 
   return (
     <>
-      <section className="w-full text-white py-20 relative z-0">
-        <ParticleBackground />
+      <section className="w-full text-white py-20 relative z-0 overflow-hidden">
+          <ParticleBackground />
         <div className="max-w-6xl z-10 mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center mb-6">
-            <h2 className="text-4xl font-bold mb-6">About Me</h2>
-            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
-              I&apos;m a dedicated and creative full-stack web developer with a
-              strong passion for building user-friendly, efficient, and
-              impactful web applications. My coding journey began with curiosity
-              and has grown into a professional path fueled by constant learning
-              and real-world project experience.
-            </p>
+            <motion.h2
+              className="text-4xl font-bold mb-6"
+              initial={{ opacity: 0, y: -30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+            >
+              About Me
+            </motion.h2>
+            <motion.p
+              className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-6"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 1 }}
+            >
+              I&apos;m a dedicated and creative full-stack web developer... m a
+              dedicated and creative full-stack web developer with a strong
+              passion for building user-friendly, efficient, and impactful web
+              applications. My coding journey began with curiosity and has grown
+              into a professional path fueled by constant learning and
+              real-world project experience.
+            </motion.p>
           </div>
 
           <div className="space-y-12">
@@ -129,36 +177,50 @@ export default function About() {
               data={education}
               icon={<GraduationCap className="text-[#4EC9B0]" />}
             />
-            <Link href="/about" passHref>
-              <span
-                className="
-          inline-flex items-center gap-3
-          bg-[var(--primary)] hover:bg-[var(--secondary)]
-          text-[var(--primary-foreground)]
-          font-semibold py-2 px-6 rounded-lg
-          transition-colors duration-300 shadow-md
-          select-none
-          focus:outline-none focus:ring-2 focus:ring-[var(--primary-foreground)]
-          "
-              >
-                {/* Logo SVG simple */}
-                <svg
+
+            {/* Animated button with icon slide */}
+            <Link
+              href="/about"
+              className="
+                group relative inline-flex items-center justify-center gap-2
+                px-6 py-3 rounded-xl
+                bg-[var(--primary)] hover:bg-[var(--secondary)]
+                text-[var(--primary-foreground)]
+                font-semibold text-sm sm:text-base
+                transition-all duration-300
+                shadow-md hover:shadow-lg
+                backdrop-blur-sm
+                sm:mx-auto sm:w-fit
+              "
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                <motion.svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6"
+                  className="w-5 h-5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                   strokeWidth={2}
-                  aria-hidden="true"
+                  initial={{ x: 0 }}
+                  whileHover={{ x: 6 }}
+                  transition={{ type: "spring", stiffness: 300 }}
                 >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d="M12 4v16m8-8H4"
+                    d="M9 5l7 7-7 7"
                   />
-                </svg>
-                <span>Read More</span>
+                </motion.svg>
+                Read More
               </span>
+              <span
+                className="
+                  absolute inset-0 rounded-xl
+                  bg-white/10 opacity-0 group-hover:opacity-100
+                  transition-opacity duration-300
+                  pointer-events-none
+                "
+              />
             </Link>
           </div>
         </div>
