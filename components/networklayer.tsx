@@ -50,9 +50,9 @@ const NetworkLayer = ({ x, y, factor, opacity = 0.2 }: NetworkLayerProps) => {
 
     // Animasi opacity loop dari useAnimation controls
     controls.start({
-      opacity: [0.1, 0.4, 0.1],
+      opacity: [0.1, 1, 0.1],
       transition: {
-        duration: 10,
+        duration: 3,
         repeat: Infinity,
         repeatType: "loop",
         ease: "easeInOut",
