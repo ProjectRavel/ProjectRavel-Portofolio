@@ -7,22 +7,22 @@ const contactItems = [
   {
     icon: <Phone className="w-5 h-5 text-[var(--primary)]" />,
     label: "WhatsApp",
-    href: "https://wa.me/6281234567890",
+    href: "https://wa.me/6285159773009",
   },
   {
     icon: <Github className="w-5 h-5 text-[var(--primary)]" />,
     label: "GitHub",
-    href: "https://github.com/yourusername",
+    href: "https://github.com/projectravel",
   },
   {
     icon: <Mail className="w-5 h-5 text-[var(--primary)]" />,
     label: "Email",
-    href: "mailto:youremail@example.com",
+    href: "mailto:rafaelsumanti01@gmail.com",
   },
   {
     icon: <Instagram className="w-5 h-5 text-[var(--primary)]" />,
     label: "Instagram",
-    href: "https://instagram.com/yourusername",
+    href: "https://instagram.com/artificialvels",
   },
 ];
 
