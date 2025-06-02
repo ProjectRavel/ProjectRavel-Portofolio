@@ -3,10 +3,10 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 
 const navLinks = [
-  { href: "#hero", label: "Home" },
-  { href: "#about", label: "About" },
-  { href: "#projects", label: "Projects" },
-  { href: "#contact", label: "Contact" },
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/projects", label: "Projects" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function Navbar() {
@@ -52,12 +52,13 @@ export default function Navbar() {
       ></div>
 
       <div className="max-w-5xl mx-auto flex justify-between items-center p-4 relative z-10">
-        <span
+        <Link
+          href="/"
           className="font-bold text-[20px] text-[var(--foreground)]"
           style={{ fontFamily: "var(--font-sans)" }}
         >
           /ProjectRavel
-        </span>
+        </Link>
 
         {/* Desktop Menu */}
         <div
