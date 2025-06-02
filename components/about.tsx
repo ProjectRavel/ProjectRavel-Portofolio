@@ -45,60 +45,62 @@ const CodeBlock = memo(function CodeBlock({
 
   return (
     <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
-      variants={containerVariants}
-      className="bg-[#1e1e1e] rounded-xl p-6 sm:p-8 shadow-lg border border-gray-700 transition-transform hover:scale-[1.02] cursor-default select-text"
-    >
-      <div className="flex items-center gap-3 mb-4">
-        {icon}
-        <motion.h3
-          className="text-2xl font-semibold text-white"
-          initial={{ opacity: 0, x: -10 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-        >
-          {title}
-        </motion.h3>
-      </div>
-      <pre className="text-sm sm:text-base font-mono text-white overflow-x-auto whitespace-pre-wrap break-words max-w-full">
-        <code>
-          <span className={vscodeColors.keyword}>const</span>{" "}
-          <span className={vscodeColors.variable}>{title.toLowerCase()}</span>{" "}
-          =[
-          <br />
-          {data.map((item, i) => {
-            const entries = Object.entries(item).filter(
-              ([key]) => key !== undefined
-            );
-            return (
-              <motion.span
-                key={i}
-                custom={i}
-                variants={itemVariants}
-                className="block ml-4"
-              >
-                &#123;
-                <br />
-                {entries.map(([key, val], idx) => (
-                  <span key={idx}>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <span className={vscodeColors.property}>{key}</span>:{" "}
-                    <span className={vscodeColors.string}>{val}</span>
-                    {idx !== entries.length - 1 ? "," : ""}
-                    <br />
-                  </span>
-                ))}
-                &#125;{i !== data.length - 1 ? "," : ""}
-                <br />
-              </motion.span>
-            );
-          })}
-          ];
-        </code>
-      </pre>
-    </motion.div>
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={containerVariants}
+        className="bg-[#1e1e1e] rounded-xl p-6 sm:p-8 shadow-lg border border-gray-700 transition-transform hover:scale-[1.02] select-text cursor-pointer"
+      >
+    <Link href={"/about"} className="cursor-pointer">
+        <div className="flex items-center gap-3 mb-4">
+          {icon}
+          <motion.h3
+            className="text-2xl font-semibold text-white"
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            {title}
+          </motion.h3>
+        </div>
+        <div className="text-sm sm:text-base font-mono text-white overflow-x-auto whitespace-pre-wrap break-words max-w-full cursor-pointer">
+          <code>
+            <span className={vscodeColors.keyword}>const</span>{" "}
+            <span className={vscodeColors.variable}>{title.toLowerCase()}</span>{" "}
+            =[
+            <br />
+            {data.map((item, i) => {
+              const entries = Object.entries(item).filter(
+                ([key]) => key !== undefined
+              );
+              return (
+                <motion.span
+                  key={i}
+                  custom={i}
+                  variants={itemVariants}
+                  className="block ml-4"
+                >
+                  &#123;
+                  <br />
+                  {entries.map(([key, val], idx) => (
+                    <span key={idx}>
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                      <span className={vscodeColors.property}>{key}</span>:{" "}
+                      <span className={vscodeColors.string}>{val}</span>
+                      {idx !== entries.length - 1 ? "," : ""}
+                      <br />
+                    </span>
+                  ))}
+                  &#125;{i !== data.length - 1 ? "," : ""}
+                  <br />
+                </motion.span>
+              );
+            })}
+            ];
+          </code>
+        </div>
+    </Link>
+      </motion.div>
   );
 });
 
@@ -140,7 +142,7 @@ export default function About() {
   return (
     <>
       <section className="w-full text-white py-20 relative z-0 overflow-hidden">
-          <ParticleBackground />
+        <ParticleBackground />
         <div className="max-w-6xl z-10 mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center mb-6">
             <motion.h2
@@ -157,12 +159,12 @@ export default function About() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 1 }}
             >
-              I&apos;m a dedicated and creative full-stack web developer... m a
-              dedicated and creative full-stack web developer with a strong
-              passion for building user-friendly, efficient, and impactful web
-              applications. My coding journey began with curiosity and has grown
-              into a professional path fueled by constant learning and
-              real-world project experience.
+                I&apos;m a dedicated and creative full-stack web developer. i&apos;m a
+                dedicated and creative full-stack web developer with a strong
+                passion for building user-friendly, efficient, and impactful web
+                applications. My coding journey began with curiosity and has grown
+                into a professional path fueled by constant learning and
+                real-world project experience.
             </motion.p>
           </div>
 
