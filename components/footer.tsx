@@ -102,7 +102,7 @@ export default function Footer() {
       {/* Footer Bottom */}
       <div className="mt-10 pt-6 text-center text-sm text-[var(--muted-foreground)] border-t border-[var(--border)]">
         &copy; {new Date().getFullYear()} Ravels. All rights reserved. Built
-        with ❤️ using Next.js & TailwindCSS.
+        with Next.js
       </div>
     </footer>
   );
