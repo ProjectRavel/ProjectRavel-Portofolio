@@ -16,72 +16,55 @@ export default function ParticleBackground() {
       init={particlesInit}
       options={{
         fullScreen: { enable: false },
-        background: { color: { value: "#0a0a0a" } }, // hitam pekat
+        background: { color: { value: "#0a0a0a" } }, // warna latar belakang
         fpsLimit: 60,
         particles: {
-          number: { value: 200, density: { enable: true, area: 900 } },
+          number: {
+            value: 60,
+            density: {
+              enable: true,
+              area: 1200,
+            },
+          },
           color: { value: "#ffffff" },
           shape: {
-            type: "polygon",
-            polygon: { sides: 5 }, // hexagon
+            type: "circle", // lebih ringan daripada polygon
           },
           opacity: {
-            value: 0.5,
+            value: 1,
             random: true,
-            anim: {
-              enable: true,
-              speed: 1,
-              opacity_min: 0.15,
-              sync: false,
-            },
+            anim: { enable: false }, // nonaktifkan animasi opacity
           },
-          line_linked: {
-            enable_auto: true,
-            distance: 700,
-            color: "#ffffff",
-            opacity: 0.4,
-            width: 1,
-            shadow: {
-              enable: true,
-              color: "#ffffff",
-              blur: 1,
-            },
-            },
           size: {
-            value: { min: 0.5, max: 1 },
+            value: 0,
             random: true,
-            anim: {
-              enable: true,
-              speed: 2,
-              size_min: 1,
-              sync: false,
-            },
+            anim: { enable: false }, // nonaktifkan animasi size
           },
+         
           move: {
             enable: true,
-            speed: 2,
+            speed: 0.5,
             direction: "none",
             random: false,
             straight: false,
             outModes: { default: "out" },
-            bounce: true,
+            bounce: false,
           },
         },
         interactivity: {
           events: {
-            onHover: { enable: true, mode: "grab" },
-            onClick: { enable: true, mode: "push" },
-            resize: true,
+            onHover: {
+              enable: true,
+              mode: "grab",
+            },
           },
           modes: {
             grab: {
               distance: 100,
-              links: { opacity: 0.7 },
-              radius: 100,
+              links: {
+                opacity: 1,
+              },
             },
-           Grab: {
-
-           }   
           },
         },
         detectRetina: true,
@@ -93,7 +76,7 @@ export default function ParticleBackground() {
         width: "100%",
         height: "100%",
         zIndex: 0,
-        filter: "drop-shadow(0 0 4px #fff)", // glow halus
+        filter: "drop-shadow(0 0 2px #ffffff33)", // glow tipis, rgba
       }}
     />
   );
