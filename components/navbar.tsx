@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -13,6 +14,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -70,8 +72,8 @@ export default function Navbar() {
               key={href}
               href={href}
               className={`px-3 py-1 text-[14px] rounded-2xl flex items-center transition duration-200 ${
-                href === "#hero"
-                  ? "bg-[var(--secondary)] text-white hover:opacity-90"
+                pathname === href
+                  ? "text-white"
                   : "text-[var(--foreground)]/70 hover:opacity-80"
               }`}
             >
@@ -115,7 +117,9 @@ export default function Navbar() {
               <Link
                 key={href}
                 href={href}
-                className="hover:underline transition duration-200"
+                className={`hover:underline transition duration-200 ${
+                  pathname === href ? "text-white" : ""
+                }`}
                 onClick={() => setIsOpen(false)}
               >
                 {label}
