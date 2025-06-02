@@ -147,6 +147,8 @@
   --shadow-2xl: var(--shadow-2xl);
 }
 
+
+
 body {
   background: var(--background);
   color: var(--foreground);
