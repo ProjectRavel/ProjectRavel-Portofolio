@@ -2,60 +2,12 @@
 
 import Image from "next/image";
 import GitHubCalendar from "react-github-calendar";
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
+import Link from "next/link";
+import { projects } from "@/app/data/projects-data";
 
-const projects = [
-  {
-    title: "E-Commerce Laravel",
-    description: "Sebuah aplikasi e-commerce sederhana yang dibangun dengan Laravel, lengkap dengan fitur keranjang belanja dan manajemen produk",
-    image: "/images/e-commerce.png",  // versi thumbnail (resize dan compress)
-    blurDataURL:
-      "data:image/jpeg;base64,/9j/2wCEAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCABKAFoDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAQFBv/EABYBAQEBAAAAAAAAAAAAAAAAAAABAv/aAAwDAQACEAMQAAAB9gT/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/9oACAEBAAE/AG//xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oACAECAQE/AG//xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oACAEDAQE/AG//2Q==",
-  },
-
-  {
-    title: "Mentoring at Community IT (Commit)",
-    description: "Menoring on web development and programming for students at Community IT (Commit), focusing on practical skills and real-world applications.",
-    image: "/images/commit.png",
-    blurDataURL:
-      "data:image/jpeg;base64,/9j/2wCEAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCABKAFoDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAQFBv/EABYBAQEBAAAAAAAAAAAAAAAAAAABAv/aAAwDAQACEAMQAAAB9gT/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/9oACAEBAAE/AG//xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oACAECAQE/AG//xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oACAEDAQE/AG//2Q==",
-  },
-
-  {
-    title: "Cashier App (React JS)",
-    description: "A cashier application built with React JS, designed to manage transactions and sales efficiently.",
-    image: "/images/cashier-app.png",
-    blurDataURL:
-      "data:image/jpeg;base64,/9j/2wCEAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCABKAFoDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAQFBv/EABYBAQEBAAAAAAAAAAAAAAAAAAABAv/aAAwDAQACEAMQAAAB9gT/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/9oACAEBAAE/AG//xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oACAECAQE/AG//xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oACAEDAQE/AG//2Q=="
-  },
-
-  {
-    title: "NoteApp For Personal Use(Laravel)",
-    description: "A personal note-taking application built with Laravel, allowing users to create, edit, and manage notes securely.",
-    image: "/images/note-app.png",
-    blurDataURL:
-      "data:image/jpeg;base64,/9j/2wCEAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCABKAFoDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAQFBv/EABYBAQEBAAAAAAAAAAAAAAAAAAABAv/aAAwDAQACEAMQAAAB9gT/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/9oACAEBAAE/AG//xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oACAECAQE/AG//xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oACAEDAQE/AG//2Q=="
-  },
-
-  {
-    title: "Stack Overflow Clone (Laravel)",
-    description: "A clone of Stack Overflow built with Laravel, featuring user authentication, question and answer functionality, and a voting system.",
-    image: "/images/stack-overflow.png",
-    blurDataURL:
-       "data:image/jpeg;base64,/9j/2wCEAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCABKAFoDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAQFBv/EABYBAQEBAAAAAAAAAAAAAAAAAAABAv/aAAwDAQACEAMQAAAB9gT/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/9oACAEBAAE/AG//xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oACAECAQE/AG//xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oACAEDAQE/AG//2Q=="
-  },
-
-  {
-    title: "Movie List API (Javascript)",
-    description: "A simple movie list API using OMDB API built with JavaScript, allowing users to retrieve and manage a list of movies.",
-    image: "/images/movie-omdb.png",
-    blurDataURL:
-       "data:image/jpeg;base64,/9j/2wCEAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCABKAFoDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAQFBv/EABYBAQEBAAAAAAAAAAAAAAAAAAABAv/aAAwDAQACEAMQAAAB9gT/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/9oACAEBAAE/AG//xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oACAECAQE/AG//xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oACAEDAQE/AG//2Q=="
-  }
-];
 
 export default function Project() {
-  const [showAll, setShowAll] = useState(false);
   const circleRef = useRef<SVGSVGElement>(null);
   const rectRef = useRef<SVGSVGElement>(null);
   const polygonRef = useRef<SVGSVGElement>(null);
@@ -135,14 +87,6 @@ export default function Project() {
           dan meningkatkan skill saya di dunia web development.
         </p>
 
-        <div className="relative z-10 mb-16 w-full overflow-x-auto max-w-6xl">
-          <h2 className="text-2xl font-semibold text-[var(--secondary-foreground)] mb-4">
-            GitHub Contributions:
-          </h2>
-          <div className="flex justify-center">
-            <GitHubCalendar username="projectravel" blockSize={15} blockMargin={5} fontSize={16} />
-          </div>
-        </div>
 
         <h2 className="relative z-10 text-2xl font-semibold text-[var(--secondary-foreground)] mb-4">
           Projects:
@@ -151,7 +95,7 @@ export default function Project() {
           {displayedProjects.map((project, index) => (
             <div
               key={index}
-              className="group relative w-full aspect-[3/2] overflow-hidden rounded-[10px] shadow-xl hover:shadow-2xl transition duration-300"
+              className="group relative w-full aspect-[3/2] overflow-hidden rounded-[10px] shadow-xl hover:shadow-2xl transition duration-300 cursor-pointer"
             >
               <Image
                 src={project.image}
@@ -170,14 +114,25 @@ export default function Project() {
           ))}
         </div>
 
-        <div className="relative z-10 mt-10">
-          <button
-            onClick={() => setShowAll(!showAll)}
+  <div className="relative z-10 mt-10">
+          <Link
+            href="/projects"
             className="px-6 py-2 rounded-xl text-white bg-primary hover:bg-background hover:border hover:border-primary transition"
           >
-            {showAll ? "Show Less" : "Show More"}
-          </button>
+            Show More
+          </Link>
         </div>
+
+        <div className="relative z-10 mb-16 w-full my-24 overflow-x-auto max-w-6xl">
+          <h2 className="text-2xl font-semibold text-[var(--secondary-foreground)] mb-4">
+            GitHub Contributions:
+          </h2>
+          <div className="flex justify-center">
+            <GitHubCalendar username="projectravel" blockSize={15} blockMargin={5} fontSize={16} />
+          </div>
+        </div>
+
+      
       </div>
     </>
   );
