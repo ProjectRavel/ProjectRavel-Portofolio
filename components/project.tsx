@@ -5,7 +5,7 @@ import GitHubCalendar from "react-github-calendar";
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { projects } from "@/app/data/projects-data";
-
+import { truncateText } from "@/app/lib/utils";
 
 export default function Project() {
   const circleRef = useRef<SVGSVGElement>(null);
@@ -44,7 +44,10 @@ export default function Project() {
     };
   }, []);
 
-  const displayedProjects = projects;
+  const displayedProjects = projects.slice(0,6);
+
+
+
 
   return (
     <>
@@ -58,7 +61,7 @@ export default function Project() {
         >
           <circle cx="50" cy="50" r="40" fill="#ffffff" />
         </svg>
-
+    
         <svg
           ref={rectRef}
           className="absolute bottom-20 right-20 w-24 h-24 opacity-30"
@@ -95,20 +98,18 @@ export default function Project() {
           {displayedProjects.map((project, index) => (
             <div
               key={index}
-              className="group relative w-full aspect-[3/2] overflow-hidden rounded-[10px] shadow-xl hover:shadow-2xl transition duration-300 cursor-pointer"
+              className="group relative w-full aspect-[3/2] overflow-hidden rounded-[10px] shadow-xl hover:shadow-2xl transition duration-300 cursor-pointer hover:scale-105"
             >
               <Image
                 src={project.image}
                 alt={project.title}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                placeholder="blur"
-                blurDataURL={project.blurDataURL}
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                className="object-cover transition-transform duration-300 group-hover:scale-115"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
                 <h2 className="text-xl font-semibold text-white">{project.title}</h2>
-                <p className="text-sm text-gray-300">{project.description}</p>
+                <p className="text-sm text-gray-300">{truncateText(project.description, 110)}</p>
               </div>
             </div>
           ))}
