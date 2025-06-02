@@ -2,8 +2,13 @@
 
 import { motion } from "framer-motion";
 import { Briefcase, GraduationCap } from "lucide-react";
-import ParticleBackground from "@/components/particlesAbout";
 import Image from "next/image";
+import dynamic from "next/dynamic";
+
+const ParticleBackground = dynamic(() => import("@/components/particlesAbout"), {
+  ssr: false,
+});
+
 
 const fadeIn = {
   hidden: { opacity: 0, y: 30 },
@@ -33,7 +38,8 @@ const CardItem = ({
         src={imageSrc}
         alt={alt}
         width={112}
-        height={112}
+        height={112}  
+        loading="lazy"
         className="rounded-xl object-cover shadow-md w-full h-full"
       />
     </div>
