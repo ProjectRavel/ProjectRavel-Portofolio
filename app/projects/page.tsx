@@ -20,7 +20,7 @@ export default function ProjectsPage() {
             <Link
               key={index}
               href={`/projects/${project.slug}`}
-              className="group relative block w-full aspect-[3/2] overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition"
+              className="group relative block w-full aspect-[3/2] overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition hover:scale-105 cursor-pointer"
             >
               <Image
                 src={project.image}
