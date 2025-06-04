@@ -2,7 +2,7 @@
 
 import { projects } from "@/app/data/projects-data";
 import Image from "next/image";
-import { Github } from "lucide-react";
+import { Github, ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
 import { use } from "react";
 import Link from "next/link";
@@ -57,10 +57,9 @@ export default function ProjectPage({
           </p>
 
           <a
-            href="#"
-            target="_blank"
+            href={project.githubrepo}
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold hover:brightness-110 transition duration-200 shadow-md border border-[var(--primary)]"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold hover:brightness-110 transition duration-200 shadow-md border border-[var(--primary)] cursor-pointer hover:bg-[var(--secondary)] hover:text-[var(--secondary-foreground)]"
           >
             View Repository <Github className="w-5 h-5" />
           </a>
@@ -68,7 +67,7 @@ export default function ProjectPage({
             <button
               className="inline-flex items-center gap-2 px-6 py-3 ml-4 rounded-xl bg-[var(--secondary)] text-[var(--secondary-foreground)] font-semibold hover:brightness-110 transition duration-200 shadow-md border-[2.5px] border-[var(--secondary)] hover:bg-amber-50/0"
             >
-              Back to Projects
+              Back to Projects <ArrowLeft className="w-5 h-5"></ArrowLeft>
             </button>
           </Link>
         </div>
