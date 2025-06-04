@@ -10,7 +10,7 @@ This is a personal portfolio project built with [Next.js](https://nextjs.org), d
 
 Run the development server:
 
-\`\`\`bash
+```bash
 npm run dev
 
 # or
@@ -24,7 +24,7 @@ pnpm dev
 # or
 
 bun dev
-\`\`\`
+```
 
 Then open [http://localhost:3000](http://localhost:3000) in your browser.
 
