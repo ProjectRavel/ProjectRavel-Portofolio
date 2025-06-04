@@ -142,7 +142,9 @@ export default function About() {
   return (
     <>
       <section className="w-full text-white py-20 relative z-0 overflow-hidden">
+        <div className="hidden sm:block absolute inset-0">
         <ParticleBackground />
+        </div>
         <div className="max-w-6xl z-10 mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center mb-6">
             <motion.h2
