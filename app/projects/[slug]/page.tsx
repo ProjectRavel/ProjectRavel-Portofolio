@@ -56,20 +56,20 @@ export default function ProjectPage({
             {project.description}
           </p>
 
-          <a
-            href={project.githubrepo}
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold hover:brightness-110 transition duration-200 shadow-md border border-[var(--primary)] cursor-pointer hover:bg-[var(--secondary)] hover:text-[var(--secondary-foreground)]"
-          >
-            View Repository <Github className="w-5 h-5" />
-          </a>
-          <Link href={`/projects`}>
-            <button
-              className="inline-flex items-center gap-2 px-6 py-3 ml-4 rounded-xl bg-[var(--secondary)] text-[var(--secondary-foreground)] font-semibold hover:brightness-110 transition duration-200 shadow-md border-[2.5px] border-[var(--secondary)] hover:bg-amber-50/0"
+          <div className="flex flex-wrap justify-center lg:justify-start gap-4 mb-6">
+            <a
+              href={project.githubrepo}
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold hover:brightness-110 transition duration-200 shadow-md border border-[var(--primary)] cursor-pointer hover:bg-[var(--secondary)] hover:text-[var(--secondary-foreground)]"
             >
-              Back to Projects <ArrowLeft className="w-5 h-5"></ArrowLeft>
-            </button>
-          </Link>
+              View Repository <Github className="w-5 h-5" />
+            </a>
+            <Link href={`/projects`}>
+              <button className="inline-flex items-center gap-2 px-6 py-3 ml-4 rounded-xl bg-[var(--secondary)] text-[var(--secondary-foreground)] font-semibold hover:brightness-110 transition duration-200 shadow-md border-[2.5px] border-[var(--secondary)] hover:bg-amber-50/0">
+                Back to Projects <ArrowLeft className="w-5 h-5"></ArrowLeft>
+              </button>
+            </Link>
+          </div>
         </div>
       </motion.div>
     </div>
