@@ -96,7 +96,8 @@ export default function Project() {
         </h2>
         <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 w-full max-w-6xl">
           {displayedProjects.map((project, index) => (
-            <div
+            <Link
+              href={`/projects/${project.slug}`}
               key={index}
               className="group relative w-full aspect-[3/2] overflow-hidden rounded-[10px] shadow-xl hover:shadow-2xl transition duration-300 cursor-pointer hover:scale-105"
             >
@@ -111,7 +112,7 @@ export default function Project() {
                 <h2 className="text-xl font-semibold text-white">{project.title}</h2>
                 <p className="text-sm text-gray-300">{truncateText(project.description, 110)}</p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
