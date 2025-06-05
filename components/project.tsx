@@ -10,7 +10,10 @@ export default function Project() {
 
   return (
     <>
-      <div className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 lg:px-12 py-12 w-full backdrop-blur-2xl overflow-visible bg-[var(--background)]">
+      <div
+        id="projects"
+        className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 lg:px-12 py-12 w-full backdrop-blur-2xl overflow-visible bg-[var(--background)]"
+      >
         {/* Background Dot Pattern kecil-kecil */}
         <div
           className="absolute inset-0 z-0 pointer-events-none opacity-20"
@@ -68,9 +71,9 @@ export default function Project() {
           My Projects
         </h1>
         <p className="relative z-10 text-lg text-center max-w-2xl text-muted-foreground mb-10">
-          Beberapa proyek yang telah saya kerjakan mencakup pengembangan
-          aplikasi web, integrasi API, dan desain antarmuka pengguna yang
-          interaktif. Saya terus belajar dan meningkatkan skill saya di dunia
+          Some of the projects I have worked on include web application
+          development, API integration, and designing interactive user
+          interfaces. I continuously learn and improve my skills in the world of
           web development.
         </p>
 
