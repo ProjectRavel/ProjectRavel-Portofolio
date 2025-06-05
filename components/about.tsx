@@ -141,7 +141,7 @@ export default function About() {
 
   return (
     <>
-      <section className="w-full text-white py-20 relative z-0 overflow-hidden">
+      <section id="about" className="w-full text-white py-20 relative z-0 overflow-hidden">
         <div className="hidden sm:block absolute inset-0">
         <ParticleBackground />
         </div>
