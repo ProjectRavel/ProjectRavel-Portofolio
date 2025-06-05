@@ -64,6 +64,7 @@ export default function Hero() {
 
   return (
     <section
+      id="hero"
       ref={sectionRef}
       className="relative w-screen min-h-screen pt-20 flex items-center justify-center bg-hero-pattern bg-cover bg-center overflow-hidden"
     >
