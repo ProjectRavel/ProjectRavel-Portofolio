@@ -59,7 +59,7 @@ export default function Skill() {
       <div className="flex justify-center mt-6 z-20 relative">
         <button
           onClick={toggleSkills}
-          className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
+          className={`px-5 py-2 rounded-full text-sm font-medium transition-all cursor-pointer ${
             showAll
               ? "border border-[var(--primary)] text-white hover:bg-white hover:text-[var(--background)]"
               : "bg-[var(--primary)] text-[var(--primary-foreground)] hover:bg-[var(--primary-foreground)] hover:text-[var(--background)]"
