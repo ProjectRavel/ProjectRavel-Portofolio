@@ -55,10 +55,10 @@ export default function Footer() {
             </li>
             <li>
               <a
-                href="#blog"
+                href="#hero"
                 className="hover:text-[var(--primary)] transition-colors"
               >
-                Blog
+                hero
               </a>
             </li>
           </ul>
@@ -71,27 +71,27 @@ export default function Footer() {
           </h5>
           <div className="grid grid-cols-3 sm:grid-cols-5 gap-4 justify-items-center md:justify-items-start">
             <SocialLink
-              href="https://wa.me/6281234567890"
+              href="https://wa.me/085159773009"
               icon={<FaWhatsapp className="w-5 h-5" />}
               label="WhatsApp"
             />
             <SocialLink
-              href="https://github.com/yourusername"
+              href="https://github.com/projectravel"
               icon={<Github className="w-5 h-5" />}
               label="GitHub"
             />
             <SocialLink
-              href="https://instagram.com/yourusername"
+              href="https://instagram.com/artificialvels"
               icon={<Instagram className="w-5 h-5" />}
               label="Instagram"
             />
             <SocialLink
-              href="https://discordapp.com/users/yourdiscordid"
+              href="https://discord.gg/9dVWqq4A"
               icon={<FaDiscord className="w-5 h-5" />}
               label="Discord"
             />
             <SocialLink
-              href="mailto:you@example.com"
+              href="mailto:you@rafaelsumanti01@gmail.com"
               icon={<Mail className="w-5 h-5" />}
               label="Email"
             />
@@ -101,8 +101,7 @@ export default function Footer() {
 
       {/* Footer Bottom */}
       <div className="mt-10 pt-6 text-center text-sm text-[var(--muted-foreground)] border-t border-[var(--border)]">
-        &copy; {new Date().getFullYear()} Ravels. All rights reserved. Built
-        with Next.js
+        &copy; {new Date().getFullYear()} Ravels. All rights reserved.
       </div>
     </footer>
   );
