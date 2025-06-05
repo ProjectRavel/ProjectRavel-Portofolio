@@ -176,3 +176,25 @@ body {
 .pulse-blur {
   animation: pulseBlur 5s ease-in-out infinite;
 }
+
+::-webkit-scrollbar {
+  width: 12px; /* Lebar scrollbar */
+}
+
+/* Scrollbar track background */
+::-webkit-scrollbar-track {
+  background: var(--background); /* Bisa pakai variabel CSS */
+  border-radius: 10px;
+}
+
+/* Scrollbar thumb (bagian yang digeser) */
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary); /* Warna thumb */
+  border-radius: 10px;
+  border: 3px solid var(--background); /* Biar ada space */
+}
+
+/* Hover efek pada thumb */
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary-foreground);
+}
