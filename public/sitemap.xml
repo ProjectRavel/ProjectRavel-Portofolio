@@ -6,8 +6,16 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://projectravel-portofolio.vercel.app/portofolio</loc>
+    <loc>https://projectravel-portofolio.vercel.app/about</loc>
     <lastmod>2025-06-06</lastmod>
     <priority>0.9</priority>
   </url>
+
+ <url>
+    <loc>https://projectravel-portofolio.vercel.app/projects</loc>
+    <lastmod>2025-06-06</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+
 </urlset>
