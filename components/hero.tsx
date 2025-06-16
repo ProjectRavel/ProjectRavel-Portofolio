@@ -4,11 +4,16 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { FileDown, Terminal } from "lucide-react";
 
 export default function Hero() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
-  const names = useRef([ "Rafael-Pandu", "Ravels_Pelski", "/ProjectRavel"]).current;
+  const names = useRef([
+    "Rafael-Pandu",
+    "Ravels_Pelski",
+    "/ProjectRavel",
+  ]).current;
   const [displayText, setDisplayText] = useState("");
   const [charIndex, setCharIndex] = useState(0);
   const [nameIndex, setNameIndex] = useState(0);
@@ -126,12 +131,19 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 mt-6">
-            <Link href={'/contact'} className="group relative px-6 py-2 rounded-xl text-white font-medium bg-primary hover:bg-[var(--muted)] transition shadow-lg cursor-pointer">
-              + Contact Me
+            <Link
+              href={"/CV_Rafael_Pandu.pdf"}
+              download={true}
+              className="group flex items-center relative px-6 py-2 rounded-xl text-white font-medium bg-primary hover:bg-[var(--muted)] transition shadow-lg cursor-pointer"
+            >
+              <FileDown size={20} className="mr-2" /> Download CV
             </Link>
 
-            <Link href={'/projects'} className="group relative px-6 py-2 rounded-xl border border-primary text-primary bg-transparent hover:bg-primary hover:text-white transition shadow cursor-pointer">
-              _My Projects
+            <Link
+              href={"/projects"}
+              className="group flex relative px-6 py-2 rounded-xl border border-primary text-primary bg-transparent hover:bg-primary hover:text-white transition shadow cursor-pointer"
+            >
+              <Terminal size={20} className="mr-2" /> My Projects
             </Link>
           </div>
         </motion.div>
@@ -147,6 +159,6 @@ export default function Hero() {
           />
         </div>
       </div>
-    </section>    
+    </section>
   );
 }
