@@ -1,9 +1,10 @@
 import Image from "next/image";
-import GitHubCalendar from "react-github-calendar";
 import Link from "next/link";
 import { projects } from "@/app/data/projects-data";
 import { truncateText } from "@/app/lib/utils";
 import Skill from "./skill";
+import GithubStats from "./componentProject/githubstats";
+import BlurBackground from "./componentProject/blurBackground";
 
 export default function Project() {
   const displayedProjects = projects.slice(0, 6);
@@ -14,45 +15,8 @@ export default function Project() {
         id="projects"
         className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 lg:px-12 py-12 w-full backdrop-blur-2xl overflow-visible bg-[var(--background)]"
       >
-        {/* Background Dot Pattern kecil-kecil */}
-        <div
-          className="absolute inset-0 z-0 pointer-events-none opacity-20"
-          style={{
-            backgroundImage: `
-        radial-gradient(circle, rgba(255, 255, 255, 0.9) 0.6px, transparent 1.2px),
-        linear-gradient(180deg, #444444, oklch(0.1448 0 0))
-      `,
-            backgroundRepeat: "repeat",
-            backgroundSize: "12px 12px, 100% 100%",
-          }}
-        />
+        <BlurBackground />
 
-        {/* Lingkaran blur pulse */}
-        <div
-          className="absolute rounded-full bg-white opacity-30 blur-3xl pulse-blur"
-          style={{
-            width: "200px",
-            height: "200px",
-            top: "20%",
-            left: "10%",
-            animationDuration: "4000ms",
-            animationTimingFunction: "ease-in-out",
-            animationIterationCount: "infinite",
-          }}
-        />
-        <div
-          className="absolute rounded-full bg-white opacity-20 blur-2xl pulse-blur"
-          style={{
-            width: "150px",
-            height: "150px",
-            top: "50%",
-            left: "70%",
-            animationDuration: "6000ms",
-            animationTimingFunction: "ease-in-out",
-            animationIterationCount: "infinite",
-            animationDelay: "2000ms",
-          }}
-        />
         <div
           className="absolute rounded-full bg-white opacity-25 blur-2xl pulse-blur"
           style={{
@@ -91,6 +55,7 @@ export default function Project() {
                 src={project.image}
                 alt={project.title}
                 fill
+                loading="lazy"
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover transition-transform duration-300 group-hover:scale-115"
               />
@@ -117,19 +82,7 @@ export default function Project() {
 
         <Skill />
 
-        <div className="relative z-10 mb-16 w-full my-24 overflow-x-auto max-w-6xl">
-          <h2 className="text-2xl font-semibold text-[var(--secondary-foreground)] mb-4">
-            GitHub Contributions:
-          </h2>
-          <div className="flex justify-center">
-            <GitHubCalendar
-              username="projectravel"
-              blockSize={15}
-              blockMargin={5}
-              fontSize={16}
-            />
-          </div>
-        </div>
+        <GithubStats />
       </div>
     </>
   );
