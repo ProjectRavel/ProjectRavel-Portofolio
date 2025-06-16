@@ -132,7 +132,7 @@ export default function Hero() {
 
           <div className="flex flex-col sm:flex-row gap-4 mt-6">
             <Link
-              href={"/CV_Rafael_Pandu.pdf"}
+              href={"/assets/Rafael-Pandu-CV.pdf"}
               download={true}
               className="group flex items-center relative px-6 py-2 rounded-xl text-white font-medium bg-primary hover:bg-[var(--muted)] transition shadow-lg cursor-pointer"
             >
