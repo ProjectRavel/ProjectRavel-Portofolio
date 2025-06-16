@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/navbar";
+import ScrollToTop from "@/components/ui/scrollToTop";
 
 export const metadata: Metadata = {
   title: "ProjectRavel – Young Web Developer Portfolio",
@@ -73,6 +74,7 @@ export default function RootLayout({
       <body className="antialiased bg-[var(--background)] text-[var(--secondary)] font-sans">
         <Navbar />
         {children}
+        <ScrollToTop />
       </body>
     </html>
   );
