@@ -20,8 +20,8 @@ export default function Hero() {
           <TypingName />
 
           <p className="text-base md:text-lg text-primary/80 leading-relaxed">
-            I&apos;m a passionate Full Stack Developer focused on building
-            clean, scalable, and user-centric web applications.
+            Full Stack Developer focused on building clean, scalable, and
+            user-centric web applications.
           </p>
 
           <HeroButton />

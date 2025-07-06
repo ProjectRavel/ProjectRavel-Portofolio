@@ -45,13 +45,13 @@ const CodeBlock = memo(function CodeBlock({
 
   return (
     <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={containerVariants}
-        className="bg-[#1e1e1e] rounded-xl p-6 sm:p-8 shadow-lg border border-gray-700 transition-transform hover:scale-[1.02] select-text cursor-pointer"
-      >
-    <Link href={"/about"} className="cursor-pointer">
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+      variants={containerVariants}
+      className="bg-[#1e1e1e] rounded-xl p-6 sm:p-8 shadow-lg border border-gray-700 transition-transform hover:scale-[1.02] select-text cursor-pointer"
+    >
+      <Link href={"/about"} className="cursor-pointer">
         <div className="flex items-center gap-3 mb-4">
           {icon}
           <motion.h3
@@ -99,8 +99,8 @@ const CodeBlock = memo(function CodeBlock({
             ];
           </code>
         </div>
-    </Link>
-      </motion.div>
+      </Link>
+    </motion.div>
   );
 });
 
@@ -141,9 +141,12 @@ export default function About() {
 
   return (
     <>
-      <section id="about" className="w-full text-white py-20 relative z-0 overflow-hidden">
+      <section
+        id="about"
+        className="w-full text-white py-20 relative z-0 overflow-hidden"
+      >
         <div className="hidden sm:block absolute inset-0">
-        <ParticleBackground />
+          <ParticleBackground />
         </div>
         <div className="max-w-6xl z-10 mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center mb-6">
@@ -161,12 +164,11 @@ export default function About() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 1 }}
             >
-                I&apos;m a dedicated and creative full-stack web developer. i&apos;m a
-                dedicated and creative full-stack web developer with a strong
-                passion for building user-friendly, efficient, and impactful web
-                applications. My coding journey began with curiosity and has grown
-                into a professional path fueled by constant learning and
-                real-world project experience.
+              full-stack web developer with a passion for building
+              user-friendly, efficient, and impactful web applications. My
+              coding journey began with curiosity and has grown into a
+              professional path fueled by constant learning and real-world
+              project experience.
             </motion.p>
           </div>
 

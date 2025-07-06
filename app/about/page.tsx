@@ -57,7 +57,7 @@ export default function AboutPage() {
   return (
     <section className="relative w-full bg-[var(--background)] text-white py-16 px-4 sm:px-6 md:px-12 lg:px-24 overflow-hidden min-h-screen">
       {/* Particle Background */}
-      <div className="hidden sm:block"> 
+      <div className="hidden sm:block">
         <ParticleBackground />
       </div>
 
@@ -70,11 +70,10 @@ export default function AboutPage() {
       >
         <h1 className="text-4xl sm:text-5xl font-bold mb-4">About Me</h1>
         <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
-          I&apos;m a dedicated and creative full-stack web developer with a
-          strong passion for building user-friendly, efficient, and impactful
-          web applications. My coding journey began with curiosity and has grown
-          into a professional path fueled by constant learning and real-world
-          project experience.
+          full-stack web developer with a strong passion for building
+          user-friendly, efficient, and impactful web applications. My coding
+          journey began with curiosity and has grown into a professional path
+          fueled by constant learning and real-world project experience.
         </p>
       </motion.div>
 
