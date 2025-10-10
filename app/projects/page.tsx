@@ -11,10 +11,6 @@ export default function ProjectsPage() {
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] py-16 px-4 sm:px-8 lg:px-16">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-4xl font-bold text-center mb-6 text-[var(--secondary-foreground)]">All Projects</h1>
-        <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-10">
-          Jelajahi seluruh proyek yang telah saya bangun, mulai dari web app sederhana sampai integrasi API yang kompleks.
-        </p>
-
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <Link

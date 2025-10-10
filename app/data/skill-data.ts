@@ -13,10 +13,22 @@ export const skills = [
     image: "/images/nextjs-icon.png",
   },
   {
+    title: "Golang",
+    description:
+      "Skilled in Golang for backend development. Experienced with Go modules, routing, middleware, and building secure web applications.",
+    image: "/images/golang-icon.png",
+  },
+  {
     title: "React",
     description:
       "Proficient in React.js for building dynamic user interfaces. Experienced with hooks, state management, and component lifecycle methods. Familiar with React Router for navigation.",
     image: "/images/react-icon.png",
+  },
+  {
+    title: "CodeIgniter",
+    description:
+      "Skilled in CodeIgniter for backend development. Experienced with CodeIgniter's ORM, routing, middleware, and building secure web applications.",
+    image: "/images/codeigniter-icon.png",
   },
   {
     title: "TypeScript",
