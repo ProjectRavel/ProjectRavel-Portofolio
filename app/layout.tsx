@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import SmoothScrollProvider from "@/components/smoothScrollProvider";
 import Navbar from "@/components/navbar";
 import ScrollToTop from "@/components/ui/scrollToTop";
 
+
 export const metadata: Metadata = {
-  title: "ProjectRavel – Young Web Developer Portfolio",
+  title: "ProjectRavel – Fullstack Web Developer Portfolio",
   description:
-    "Explore ProjectRavel – a modern portfolio website showcasing creative web development projects using Next.js, Laravel, and more.",
+    "Fullstack Web Developer Portfolio of ProjectRavel. Contribute over 10+ Enterprise & Government Systems. Built with Next.js, Tailwind CSS, and Laravel.",
   keywords: [
     "ProjectRavel",
+    "Rafael Pandu Sumanti",
     "Web Developer Portfolio",
     "Next.js Portfolio",
     "Laravel Developer",
@@ -27,7 +30,7 @@ export const metadata: Metadata = {
     nocache: false,
   },
   openGraph: {
-    title: "ProjectRavel – Young Developer Portfolio",
+    title: "ProjectRavel – Fullstack Web Developer Portfolio",
     description:
       "Check out the best works and projects by ProjectRavel here. Made with Next.js, Tailwind CSS, and Laravel.",
     url: "https://projectravel-portofolio.vercel.app",
@@ -72,6 +75,7 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased bg-[var(--background)] text-[var(--secondary)] font-sans">
+        <SmoothScrollProvider />
         <Navbar />
         {children}
         <ScrollToTop />

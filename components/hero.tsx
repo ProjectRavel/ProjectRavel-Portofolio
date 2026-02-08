@@ -14,14 +14,13 @@ export default function Hero() {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-2 gap-10 items-center font-mono text-white">
         <div className="space-y-6">
           <span className="text-sm text-primary uppercase tracking-widest">
-            Hello, my name is
+            Hello, My name is
           </span>
 
           <TypingName />
 
           <p className="text-base md:text-lg text-primary/80 leading-relaxed">
-            Full Stack Developer focused on building clean, scalable, and
-            user-centric web applications.
+            Full-Stack Developer with experience in 10+ Enterprise & Government Systems
           </p>
 
           <HeroButton />

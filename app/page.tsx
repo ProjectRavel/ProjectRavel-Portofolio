@@ -5,9 +5,10 @@ import Contact from "@/components/contact";
 import Footer from "@/components/footer";
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-start bg-[var(--background)] text-[var(--foreground)] overflow-x-hidden">      <Hero />
-      <About />
+    <main className="flex min-h-screen flex-col items-center justify-start bg-[var(--background)] text-[var(--foreground)] overflow-x-hidden">      
+      <Hero />
       <Project />
+      <About />
       <Contact />
       <Footer />
     </main>

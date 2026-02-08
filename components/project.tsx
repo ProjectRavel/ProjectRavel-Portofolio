@@ -7,7 +7,7 @@ import GithubStats from "./componentProject/githubstats";
 import BlurBackground from "./componentProject/blurBackground";
 
 export default function Project() {
-  const displayedProjects = projects.slice(0, 6);
+  const displayedProjects = projects.slice(0, 12);
 
   return (
     <>
@@ -32,13 +32,11 @@ export default function Project() {
         />
 
         <h1 className="relative z-10 text-4xl font-bold text-[var(--secondary-foreground)] mb-4 text-center">
-          My Projects
+          My Projects And Contributions
         </h1>
         <p className="relative z-10 text-lg text-center max-w-2xl text-muted-foreground mb-10">
-          Some of the projects I have worked on include web application
-          development, API integration, and designing interactive user
-          interfaces. I continuously learn and improve my skills in the world of
-          web development.
+          Here are some of the projects and contributions I've made in the field
+          of web development. Feel free to explore and learn more about my work.
         </p>
 
         <h2 className="relative z-10 text-2xl font-semibold text-[var(--secondary-foreground)] mb-4">

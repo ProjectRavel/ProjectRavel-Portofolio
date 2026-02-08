@@ -1,5 +1,59 @@
 export const projects = [
   {
+    title: "Sitpas Depok",
+    slug: "sitpas-depok",
+    description:
+      "Contributed to the development of SITPAS Depok (Sistem Informasi Terpadu Pelayanan Sosial), a government web-based platform used by citizens to check and validate social welfare and public service data. The system integrates data across multiple agencies to support transparent, accurate, and efficient public service delivery, particularly in social assistance and welfare programs.",
+    image: "/images/sitpas.png",
+    githubrepo: "",
+    live: "https://sitpas.depok.go.id/",
+  },
+  {
+    title: "SJP Depok",
+    slug: "sjp-depok",
+    description:
+      "Developed and maintained the SJP Depok (Sistem Jaminan Pelayanan) web application, a government platform that manages online service guarantees for eligible citizens, especially those requiring health service support beyond basic coverage. The system facilitates service information, application tracking, and claim processing for partner healthcare facilities, improving efficiency, transparency, and ease of access to guaranteed service benefits for the public. SJP Depok has also been recognized as an innovation in public service delivery in West Java.",
+    image: "/images/sjp.png ",
+    githubrepo: "",
+    live: "https://sjp.depok.go.id/",
+  },
+  {
+    title: "Dkerens Depok",
+    slug: "dkerens-depok",
+    description:
+      "Developed and maintained the Dkerens Depok web application, a government platform supporting the development of micro, small, and medium enterprises (UMKM) in Depok City. The system provides a unified digital space for business registration, information on financing, marketing, licensing, training, and mentorship programs, as well as tools for showcasing products and connecting with buyers and partners. This platform enhances accessibility to government-supported business resources and contributes to economic empowerment and transparency for local entrepreneurs.",
+    image: "/images/dkerens.png",
+    githubrepo: "",
+    live: "https://umkmdkerens.depok.go.id/",
+  },
+  {
+    title: "Onebox Portal",
+    slug: "onebox-portal",
+    description:
+      "Developed and maintained the Onebox Portal, a government platform that integrates multiple services and data sources into a single, user-friendly interface. The portal streamlines access to various government services, enhances data interoperability, and improves citizen engagement with public services.",
+    image: "/images/onebox.png",
+    githubrepo: "",
+    live: "https://onebox.co.id/",
+  },
+  {
+    title: "Portal Ciptadra Softindo",
+    slug: "portal-ciptadra-softindo",
+    description:
+      "Developed and maintained the Ciptadra Softindo Portal, a comprehensive web-based platform that serves as a central hub for the company's services, products, and client interactions. The portal features user account management, service requests, project tracking, and resource access, providing clients with a seamless experience in engaging with Ciptadra Softindo's offerings. The system enhances communication, transparency, and efficiency in delivering IT solutions to various industries.",
+    image: "/images/portal-ciptadra.png",
+    githubrepo: "",
+    live: "https://ciptadrasoft.com/",
+  },
+  {
+    title: "Dipserdagin Depok",
+    slug: "disperdagin-depok",
+    description:
+    "Developed and maintained the Disperdagin Depok web application, a government platform for the Dinas Perdagangan dan Perindustrian (Disperdagin) of Depok City. The system provides digital access to trade and industry services, including business and market information, licensing support, industry development programs, and resources for local traders and industrial players. It enhances transparency, accessibility, and efficiency in delivering public services that support local economic growth and competitiveness of small and medium enterprises.",
+    image: "/images/disperdagin.png",
+    githubrepo: "",
+    live: "https://disperdagin.depok.go.id/",
+  },
+  {
     title: "Datawarehouse Depok",
     slug: "datawarehouse-depok",
     description:

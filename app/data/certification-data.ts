@@ -13,7 +13,7 @@ export const certifications = [
   },
   {
     title: "PKL Ciptadra Softindo",
-    image: "",
+    image: "/images/sertifikat-pkl.jpeg",
     issuer: "Ciptadra Softindo",
     link: "",
   },

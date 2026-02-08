@@ -70,7 +70,7 @@ export default function About() {
           <div className="relative pl-14">
             <motion.div
               style={{ height: lineHeight }}
-              className="absolute left-5 top-2 w-[2px] bg-gradient-to-b from-blue-400 via-blue-400 to-blue-400 origin-top"
+              className="absolute left-5 top-2 w-[2px] bg-gradient-to-b from-slate-400 via-slate-400 to-slate-400 origin-top"
             />
             {experience.map((exp, i) => (
               <motion.div
@@ -166,7 +166,7 @@ export default function About() {
                     target="_blank"
                     className="text-sm text-gray-300 underline underline-offset-4 hover:text-white transition-colors"
                   >
-                    On Progress
+                    No Link Available
                   </Link>}
               </motion.div>
             ))}
