@@ -13,7 +13,7 @@ export const projects = [
     slug: "sjp-depok",
     description:
       "Developed and maintained the SJP Depok (Sistem Jaminan Pelayanan) web application, a government platform that manages online service guarantees for eligible citizens, especially those requiring health service support beyond basic coverage. The system facilitates service information, application tracking, and claim processing for partner healthcare facilities, improving efficiency, transparency, and ease of access to guaranteed service benefits for the public. SJP Depok has also been recognized as an innovation in public service delivery in West Java.",
-    image: "/images/sjp.png ",
+    image: "/images/sjp.png",
     githubrepo: "",
     live: "https://sjp.depok.go.id/",
   },
