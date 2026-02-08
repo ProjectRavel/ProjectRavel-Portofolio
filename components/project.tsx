@@ -35,7 +35,7 @@ export default function Project() {
           My Projects And Contributions
         </h1>
         <p className="relative z-10 text-lg text-center max-w-2xl text-muted-foreground mb-10">
-          Here are some of the projects and contributions I've made in the field
+          Here are some of the projects and contributions i have made in the field
           of web development. Feel free to explore and learn more about my work.
         </p>
 
