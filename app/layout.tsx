@@ -75,7 +75,7 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased bg-[var(--background)] text-[var(--secondary)] font-sans">
-        <SmoothScrollProvider />
+        {/* <SmoothScrollProvider /> */}
         <Navbar />
         {children}
         <ScrollToTop />
