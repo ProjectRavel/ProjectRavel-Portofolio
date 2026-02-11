@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import SmoothScrollProvider from "@/components/smoothScrollProvider";
+// import SmoothScrollProvider from "@/components/smoothScrollProvider";
 import Navbar from "@/components/navbar";
 import ScrollToTop from "@/components/ui/scrollToTop";
 
